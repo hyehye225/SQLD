@@ -102,3 +102,19 @@ case when position is null then '없음'
 else position
 end as 포지션
 from player;
+
+select * from emp;
+
+--nvl 이 필요한 이유
+select ename, sal, comm, (sal*12) +nvl(comm,0) as 연봉 from emp where empno=7369;
+
+--nullif (아래와 두가지 방식 모두 알기)
+select player_name,position,
+case when position='GK' then null
+else position
+end as 포지션
+from player;
+
+select player_name, position,
+nullif(position,'GK') as 포지션
+from player;
