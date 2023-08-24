@@ -61,4 +61,18 @@ select player_name, team_id from player where team_id<>'K06' and team_id<>'K10';
 
 select player_name 선수이름, team_id, position from player where (team_id,position) in (('K04', 'GK'),('K04','MF'));
 
+select  player_name from player where player_name like '김_';
+
+describe player;
+select player_name, rownum from player;
+
+select player_name, rownum from player where rownum <=3;
+select player_name, rownum from player where rownum <2;
+select player_name, rownum from player where rownum <=1;
+select player_name, rownum from player where rownum =1;
+
+desc player;
+alter table player add (ROW_ID NUMBER);
+update player set ROW_ID =rownum;
+select player_name from player where row_id=3;
 
