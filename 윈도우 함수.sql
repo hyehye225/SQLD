@@ -48,3 +48,11 @@ from emp;
 select deptno, ename, sal,
 100*(percent_rank() over (partition by deptno order by sal desc)) || '%' as p_r
 from emp;
+
+--동일 job 내에서, 본인의 급여가 누적 순서 몇 %에 있는지 출력
+select deptno, ename, sal,
+round(100*(cume_dist() over (partition by deptno order by sal desc)),2) || '%' as cume from emp;
+
+--전체 사원을 급여 순으로 정렬하고, 급여 기준 4개의 그룹으로 분리하는 질의를 작성하시오
+select ename, sal, ntile(4) over (order by sal desc) as 급여구간
+from emp;
